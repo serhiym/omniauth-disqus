@@ -9,6 +9,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = ""
 
   gem.add_runtime_dependency     'omniauth-oauth2'
+  gem.add_runtime_dependency     'httparty'
   
   gem.add_development_dependency 'rspec', '~> 2.6'
   gem.add_development_dependency 'webmock'

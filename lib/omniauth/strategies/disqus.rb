@@ -15,11 +15,11 @@ module OmniAuth
 
       info do
         {
-          :name => raw_info['name']
-          :nickname => raw_info['username']
-          :urls =>{ 'profileUrl' => raw_info['profileUrl'] }
-          :location => raw_info['location']
-          :image => raw_info['avatar']['small']['permalink']
+          :name => raw_info['name'],
+          :nickname => raw_info['username'],
+          :urls => { 'profileUrl' => raw_info['profileUrl'] },
+          :location => raw_info['location'],
+          :image => raw_info['avatar']['small']['permalink'],
         }
       end
 
@@ -28,12 +28,13 @@ module OmniAuth
       end
       
       def raw_info
-        debugger
-        res = HTTParty.get("http://disqus.com/api/3.0/users/details.json?api_key=#{access_token.client.id}&user=#{access_token.params['user_id']}")
+        begin
+          res = HTTParty.get("http://disqus.com/api/3.0/users/details.json?api_key=#{access_token.client.id}&user=#{access_token.params['user_id']}")
+        rescue => e
+          e # what should be done with this?
+        end
         res = Hashie::Mash.new(res.to_hash['response'])
         @raw_info ||= res
-      rescue => e
-        e
       end
     end
   end
