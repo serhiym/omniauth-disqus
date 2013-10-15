@@ -20,6 +20,7 @@ module OmniAuth
           :urls => { 'profileUrl' => raw_info['profileUrl'] },
           :location => raw_info['location'],
           :image => raw_info['avatar']['small']['permalink'],
+          :email => raw_info['email'],
         }
       end
 
